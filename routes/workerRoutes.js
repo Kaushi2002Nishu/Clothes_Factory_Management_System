@@ -6,5 +6,6 @@ const { createWorker, getWorkers, deleteWorker} = require("../controllers/Worker
 router.post("/", createWorker);
 router.get("/", getWorkers);
 router.delete("/:id", deleteWorker);
+router.put("/:id", updateWorker);
 
 module.exports = router;

@@ -21,4 +21,7 @@ mongoose
     });
 })
 .catch((error) => console.log(error));
+
 app.use("/api/workers",workerRoutes);
+app.use("/api/orders",orderRoutes);
+app.use("/api/productions", productionRoutes);
