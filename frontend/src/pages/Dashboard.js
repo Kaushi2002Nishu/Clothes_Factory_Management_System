@@ -1,22 +1,36 @@
 function Dashboard() {
   return (
     <div>
-      <h1>Factory Dashboard</h1>
-
-      <div className="grid">
-        <div className="box">
-          <h1>Workers</h1>
-          <p>Manage factory workers</p>
+      <div className="dashboard-header">
+        <div className="dashboard-text">
+          <h1>Clothes Factory Management System</h1>
+          <p>
+            Manage workers, customer orders, and production stages easily.
+          </p>
         </div>
 
-        <div className="box">
-          <h1>Orders</h1>
-          <p>Track customer orders</p>
+        <div className="dashboard-image">
+          <img
+            src="/factory.jpg"
+            alt="Factory"
+          />
+        </div>
+      </div>
+
+      <div className="dashboard-grid">
+        <div className="dashboard-box">
+          <h2>👷 Workers</h2>
+          <p>Manage employee details, salary, and shifts.</p>
         </div>
 
-        <div className="box">
-          <h1>Production</h1>
-          <p>Monitor production stages</p>
+        <div className="dashboard-box">
+          <h2>📦 Orders</h2>
+          <p>Track customer product orders and status.</p>
+        </div>
+
+        <div className="dashboard-box">
+          <h2>🏭 Production</h2>
+          <p>Monitor factory production progress.</p>
         </div>
       </div>
     </div>

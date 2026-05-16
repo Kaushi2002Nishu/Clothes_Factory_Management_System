@@ -1,100 +1,125 @@
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #f4f6f9;
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f4f6fb;
 }
 
-/* Sidebar */
-.sidebar {
-  width: 220px;
-  height: 100vh;
-  background: #111827;
-  position: fixed;
-  padding: 20px;
-  color: white;
+.sidebar{
+  width:220px;
+  height:100vh;
+  background:#1e293b;
+  color:white;
+  position:fixed;
+  padding:20px;
 }
 
-.sidebar h2 {
-  color: #60a5fa;
-  margin-bottom: 30px;
+.sidebar h2{
+  color:#60a5fa;
 }
 
-.sidebar a {
-  display: block;
-  color: white;
-  text-decoration: none;
-  padding: 10px;
-  margin: 8px 0;
-  border-radius: 8px;
+.sidebar a{
+  display:block;
+  color:white;
+  text-decoration:none;
+  margin:15px 0;
+  padding:10px;
+  border-radius:8px;
 }
 
-.sidebar a:hover {
-  background: #1f2937;
+.sidebar a:hover{
+  background:#334155;
 }
 
-/* Main */
-.main {
-  margin-left: 240px;
-  padding: 20px;
+.main{
+  margin-left:250px;
+  padding:30px;
 }
 
-/* Cards */
-.card {
-  background: white;
-  padding: 15px;
-  margin: 10px 0;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-  display: flex;
-  justify-content: space-between;
+h2{
+  color:#1e293b;
 }
 
-/* Dashboard cards */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+input{
+  padding:12px;
+  margin:8px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  width:220px;
 }
 
-.box {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+button{
+  padding:12px 20px;
+  border:none;
+  border-radius:8px;
+  background:#2563eb;
+  color:white;
+  cursor:pointer;
 }
 
-.box h1 {
-  margin: 0;
-  color: #2563eb;
+button:hover{
+  background:#1d4ed8;
 }
 
-/* Inputs */
-input {
-  padding: 10px;
-  margin: 5px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+.delete{
+  background:#ef4444;
 }
 
-/* Buttons */
-button {
-  padding: 10px 14px;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+.delete:hover{
+  background:#dc2626;
 }
 
-button:hover {
-  background: #1d4ed8;
+.card{
+  background:white;
+  margin-top:20px;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
 
-.delete {
-  background: #ef4444;
+.dashboard-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
 
-.delete:hover {
-  background: #dc2626;
+.dashboard-text{
+  width:50%;
+}
+
+.dashboard-text h1{
+  color:#1e293b;
+  margin-bottom:10px;
+}
+
+.dashboard-text p{
+  color:#64748b;
+  font-size:18px;
+}
+
+.dashboard-image img{
+  width:350px;
+  border-radius:12px;
+}
+
+.dashboard-grid{
+  margin-top:30px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.dashboard-box{
+  background:white;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  transition:0.3s;
+}
+
+.dashboard-box:hover{
+  transform:translateY(-5px);
 }

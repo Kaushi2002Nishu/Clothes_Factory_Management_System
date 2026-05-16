@@ -309,7 +309,10 @@ POST /api/productions
 ![Delete Production - Postman](screenshots/postman-delete-production.png)
 
 ---
+### 🗄 MongoDB Database Collections
+![MongoDB](screenshots/mongodb.png)
 
+---
 ## ✅ Testing
 
 All CRUD operations were tested using:
