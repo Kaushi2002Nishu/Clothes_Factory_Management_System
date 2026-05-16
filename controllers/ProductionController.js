@@ -1,45 +1,25 @@
-const Production = require("../models/Production");
+import Production from "../models/Production.js";
 
-
-exports.createProduction = async (req, res) => {
-  try {
-    const production = await Production.create(req.body);
-    res.json(production);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+export const createProduction = async (req, res) => {
+  const production = await Production.create(req.body);
+  res.json(production);
 };
 
-
-exports.getProductions = async (req, res) => {
-  try {
-    const productions = await Production.find();
-    res.json(productions);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+export const getProductions = async (req, res) => {
+  const productions = await Production.find();
+  res.json(productions);
 };
 
-
-exports.updateProduction = async (req, res) => {
-  try {
-    const production = await Production.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true }
-    );
-    res.json(production);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+export const updateProduction = async (req, res) => {
+  const production = await Production.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true }
+  );
+  res.json(production);
 };
 
-
-exports.deleteProduction = async (req, res) => {
-  try {
-    await Production.findByIdAndDelete(req.params.id);
-    res.json({ message: "Production deleted" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
+export const deleteProduction = async (req, res) => {
+  await Production.findByIdAndDelete(req.params.id);
+  res.json({ message: "Production deleted" });
 };

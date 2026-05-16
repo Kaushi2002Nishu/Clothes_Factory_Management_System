@@ -1,10 +1,13 @@
 import mongoose from "mongoose";
 
-const OrderSchema = new mongoose.Schema({
-  custmerName: String,
-  productType: String,
+const orderSchema = new mongoose.Schema({
+  customerName: String,
+  product: String,
   quantity: Number,
-  status: "pending" | "in production" | "completed"
+  status: {
+    type: String,
+    default: "pending"
+  }
 });
 
-module.exports = mongoose.model("Order", OrderSchema);
+export default mongoose.model("Order", orderSchema);

@@ -7,4 +7,4 @@ const workerSchema = new mongoose.Schema({
   shift: String
 });
 
-module.exports = mongoose.model("Worker", workerSchema);
+export default mongoose.model("Worker", workerSchema);
