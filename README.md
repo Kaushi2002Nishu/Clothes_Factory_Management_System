@@ -1,8 +1,8 @@
 # 🏭 Clothes Factory Management System
 
-![GitHub repo size](https://img.shields.io/github/repo-size/Kaushi2002Nishu/clothes-factory-management)
-![GitHub last commit](https://img.shields.io/github/last-commit/Kaushi2002Nishu/clothes-factory-management)
-![GitHub license](https://img.shields.io/github/license/Kaushi2002Nishu/clothes-factory-management)
+![GitHub repo size](https://img.shields.io/github/repo-size/Kaushi2002Nishu/Clothes_Factory_Management_System)
+![GitHub last commit](https://img.shields.io/github/last-commit/Kaushi2002Nishu/Clothes_Factory_Management_System)
+![GitHub license](https://img.shields.io/github/license/Kaushi2002Nishu/Clothes_Factory_Management_System)
 
 A full-stack web application to digitally manage daily operations in a clothes manufacturing factory — including workers, customer orders, and production stages.
 
@@ -117,8 +117,8 @@ Clothes_Factory_Management_System/
 ### Step 1 — Clone the Repository
 
 ```bash
-git clone https://github.com/Kaushi2002Nishu/clothes-factory-management.git
-cd clothes-factory-management
+git clone https://github.com/Kaushi2002Nishu/Clothes_Factory_Management_System.git
+cd Clothes_Factory_Management_System
 ```
 
 ---
