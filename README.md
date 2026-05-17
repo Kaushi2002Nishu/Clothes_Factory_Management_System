@@ -282,7 +282,7 @@ POST /api/productions
 
 ### 🧪 Postman — Get Order (PUT)
 
-![Get Order - Postman](screenshots/postman-get-order.png)
+![Get Order - Postman](screenshots/postman-get-orders.png)
 
 ---
 
