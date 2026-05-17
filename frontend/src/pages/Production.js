@@ -3,10 +3,14 @@ import axios from "axios";
 
 function Production() {
   const [items, setItems] = useState([]);
+
   const [orderId, setOrderId] = useState("");
   const [workerId, setWorkerId] = useState("");
   const [date, setDate] = useState("");
   const [stage, setStage] = useState("designing");
+
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   // Load productions
   const loadProduction = async () => {
@@ -14,7 +18,7 @@ function Production() {
       const res = await axios.get("http://localhost:5000/api/productions");
       setItems(res.data);
     } catch (error) {
-      console.log(error);
+      setError("Failed to load productions");
     }
   };
 
@@ -24,6 +28,15 @@ function Production() {
 
   // Add production
   const addProduction = async () => {
+    setError("");
+    setSuccess("");
+
+    // frontend validation
+    if (!orderId || !workerId || !stage) {
+      setError("Order ID, Worker ID and Stage are required");
+      return;
+    }
+
     try {
       await axios.post("http://localhost:5000/api/productions", {
         orderId,
@@ -32,6 +45,8 @@ function Production() {
         stage
       });
 
+      setSuccess("Production added successfully");
+
       setOrderId("");
       setWorkerId("");
       setDate("");
@@ -39,7 +54,7 @@ function Production() {
 
       loadProduction();
     } catch (error) {
-      console.log(error);
+      setError(error.response?.data?.message || "Failed to add production");
     }
   };
 
@@ -47,15 +62,20 @@ function Production() {
   const deleteProduction = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/productions/${id}`);
+      setSuccess("Production deleted");
       loadProduction();
     } catch (error) {
-      console.log(error);
+      setError(error.response?.data?.message || "Delete failed");
     }
   };
 
   return (
     <div>
       <h2>Production</h2>
+
+      {/* ERROR / SUCCESS */}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {success && <p style={{ color: "green" }}>{success}</p>}
 
       {/* Order ID */}
       <input
@@ -78,7 +98,7 @@ function Production() {
         onChange={(e) => setDate(e.target.value)}
       />
 
-      {/* Stage Dropdown (moved after date) */}
+      {/* Stage Dropdown */}
       <div className="select-wrapper">
         <select
           value={stage}

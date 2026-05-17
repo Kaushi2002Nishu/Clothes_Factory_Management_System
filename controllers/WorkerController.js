@@ -3,21 +3,30 @@ import Worker from "../models/Worker.js";
 // Create Worker
 export const createWorker = async (req, res) => {
   try {
+    const { name, position, salary, shift } = req.body;
+
+    if (!name || !position || !salary) {
+      return res.status(400).json({
+        message: "Name, position and salary are required"
+      });
+    }
+
     const worker = await Worker.create(req.body);
-    res.status(201).json(worker);
+
+    return res.status(201).json(worker);
   } catch (error) {
-    console.error("Create Worker Error:", error.message);
-    res.status(500).json({ message: "Failed to create worker" });
+    return res.status(500).json({
+      message: error.message || "Server error"
+    });
   }
 };
 
-// Get All Workers
+// Get Workers
 export const getWorkers = async (req, res) => {
   try {
     const workers = await Worker.find();
     res.status(200).json(workers);
   } catch (error) {
-    console.error("Get Workers Error:", error.message);
     res.status(500).json({ message: "Failed to fetch workers" });
   }
 };
@@ -37,8 +46,7 @@ export const updateWorker = async (req, res) => {
 
     res.status(200).json(worker);
   } catch (error) {
-    console.error("Update Worker Error:", error.message);
-    res.status(500).json({ message: "Failed to update worker" });
+    res.status(500).json({ message: "Update failed" });
   }
 };
 
@@ -53,7 +61,6 @@ export const deleteWorker = async (req, res) => {
 
     res.status(200).json({ message: "Worker deleted successfully" });
   } catch (error) {
-    console.error("Delete Worker Error:", error.message);
-    res.status(500).json({ message: "Failed to delete worker" });
+    res.status(500).json({ message: "Delete failed" });
   }
 };

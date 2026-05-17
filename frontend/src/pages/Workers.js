@@ -9,13 +9,16 @@ function Workers() {
   const [salary, setSalary] = useState("");
   const [shift, setShift] = useState("morning");
 
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
   // Load workers
   const loadWorkers = async () => {
     try {
       const res = await axios.get("http://localhost:5000/api/workers");
       setWorkers(res.data);
     } catch (error) {
-      console.log(error);
+      setError("Failed to load workers");
     }
   };
 
@@ -25,6 +28,15 @@ function Workers() {
 
   // Add worker
   const addWorker = async () => {
+    setError("");
+    setSuccess("");
+
+    // frontend validation
+    if (!name || !salary) {
+      setError("Name and Salary are required");
+      return;
+    }
+
     try {
       await axios.post("http://localhost:5000/api/workers", {
         name,
@@ -33,6 +45,8 @@ function Workers() {
         shift
       });
 
+      setSuccess("Worker added successfully");
+
       setName("");
       setPosition("tailor");
       setSalary("");
@@ -40,7 +54,7 @@ function Workers() {
 
       loadWorkers();
     } catch (error) {
-      console.log(error);
+      setError(error.response?.data?.message || "Failed to add worker");
     }
   };
 
@@ -48,15 +62,20 @@ function Workers() {
   const deleteWorker = async (id) => {
     try {
       await axios.delete(`http://localhost:5000/api/workers/${id}`);
+      setSuccess("Worker deleted");
       loadWorkers();
     } catch (error) {
-      console.log(error);
+      setError(error.response?.data?.message || "Delete failed");
     }
   };
 
   return (
     <div>
       <h2>Workers</h2>
+
+      {/* ERROR / SUCCESS MESSAGES */}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {success && <p style={{ color: "green" }}>{success}</p>}
 
       {/* Name */}
       <input
@@ -79,7 +98,6 @@ function Workers() {
           <option value="iron_operator">🔥 Iron Operator</option>
           <option value="packer">📦 Packer</option>
         </select>
-        <span className="select-icon">▼</span>
       </div>
 
       {/* Salary */}
@@ -100,7 +118,6 @@ function Workers() {
           <option value="evening">🌇 Evening</option>
           <option value="night">🌙 Night</option>
         </select>
-        <span className="select-icon">▼</span>
       </div>
 
       <button onClick={addWorker}>Add Worker</button>

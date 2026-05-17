@@ -3,26 +3,22 @@ import axios from "axios";
 
 function Orders() {
   const [orders, setOrders] = useState([]);
+
   const [customerName, setCustomerName] = useState("");
   const [product, setProduct] = useState("");
   const [quantity, setQuantity] = useState("");
   const [status, setStatus] = useState("pending");
 
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  // Load orders
   const loadOrders = async () => {
     try {
       const res = await axios.get("http://localhost:5000/api/orders");
       setOrders(res.data);
     } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const deleteOrder = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/orders/${id}`);
-      loadOrders();
-    } catch (error) {
-      console.log(error);
+      setError("Failed to load orders");
     }
   };
 
@@ -30,7 +26,17 @@ function Orders() {
     loadOrders();
   }, []);
 
+  // Add order
   const addOrder = async () => {
+    setError("");
+    setSuccess("");
+
+    // frontend validation
+    if (!customerName || !product || !quantity) {
+      setError("Customer, Product and Quantity are required");
+      return;
+    }
+
     try {
       await axios.post("http://localhost:5000/api/orders", {
         customerName,
@@ -39,6 +45,8 @@ function Orders() {
         status
       });
 
+      setSuccess("Order added successfully");
+
       setCustomerName("");
       setProduct("");
       setQuantity("");
@@ -46,7 +54,18 @@ function Orders() {
 
       loadOrders();
     } catch (error) {
-      console.log(error);
+      setError(error.response?.data?.message || "Failed to add order");
+    }
+  };
+
+  // Delete order
+  const deleteOrder = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/orders/${id}`);
+      setSuccess("Order deleted");
+      loadOrders();
+    } catch (error) {
+      setError(error.response?.data?.message || "Delete failed");
     }
   };
 
@@ -54,17 +73,24 @@ function Orders() {
     <div>
       <h2>Orders</h2>
 
+      {/* ERROR / SUCCESS */}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {success && <p style={{ color: "green" }}>{success}</p>}
+
+      {/* Customer Name */}
       <input
         placeholder="Customer Name"
         value={customerName}
         onChange={(e) => setCustomerName(e.target.value)}
       />
 
-      <select
+      {/* PRODUCT DROPDOWN */}
+      <div className="select-wrapper">
+        <select
           value={product}
           onChange={(e) => setProduct(e.target.value)}
           className="custom-select"
-      >
+        >
           <option value="">Select Product</option>
           <option value="shirt">👕 Shirt</option>
           <option value="frocks">👗 Frocks</option>
@@ -72,14 +98,17 @@ function Orders() {
           <option value="blouse">👚 Blouse</option>
           <option value="shorts">🩳 Shorts</option>
           <option value="denim_shirt">👔 Denim Shirt</option>
-      </select>
+        </select>
+      </div>
 
+      {/* Quantity */}
       <input
         placeholder="Quantity"
         value={quantity}
         onChange={(e) => setQuantity(e.target.value)}
       />
 
+      {/* Status */}
       <input
         placeholder="Status"
         value={status}
@@ -88,6 +117,7 @@ function Orders() {
 
       <button onClick={addOrder}>Add Order</button>
 
+      {/* LIST */}
       {orders.map((order) => (
         <div className="card" key={order._id}>
           <p><b>Customer:</b> {order.customerName}</p>
