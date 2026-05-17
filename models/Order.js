@@ -2,7 +2,12 @@ import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
   customerName: String,
-  product: String,
+  product: {
+    type: String,
+    enum: ["shirt", "frocks", "trouser","bloues","shorts","denim shirts"],
+    default: "shirt",
+
+  },
   quantity: Number,
   status: {
     type: String,
@@ -11,3 +16,5 @@ const orderSchema = new mongoose.Schema({
 });
 
 export default mongoose.model("Order", orderSchema);
+
+ 
