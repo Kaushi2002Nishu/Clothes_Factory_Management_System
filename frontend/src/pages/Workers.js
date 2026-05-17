@@ -5,7 +5,7 @@ function Workers() {
   const [workers, setWorkers] = useState([]);
 
   const [name, setName] = useState("");
-  const [position, setPosition] = useState("");
+  const [position, setPosition] = useState("tailor");
   const [salary, setSalary] = useState("");
   const [shift, setShift] = useState("morning");
 
@@ -34,7 +34,7 @@ function Workers() {
       });
 
       setName("");
-      setPosition("");
+      setPosition("tailor");
       setSalary("");
       setShift("morning");
 
@@ -58,25 +58,38 @@ function Workers() {
     <div>
       <h2>Workers</h2>
 
+      {/* Name */}
       <input
         placeholder="Name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
 
-      <input
-        placeholder="Position"
-        value={position}
-        onChange={(e) => setPosition(e.target.value)}
-      />
+      {/* POSITION DROPDOWN */}
+      <div className="select-wrapper">
+        <select
+          value={position}
+          onChange={(e) => setPosition(e.target.value)}
+          className="custom-select"
+        >
+          <option value="tailor">🧵 Tailor</option>
+          <option value="designer">🎨 Designer</option>
+          <option value="cutting_master">✂️ Cutting Master</option>
+          <option value="quality_checker">✅ Quality Checker</option>
+          <option value="iron_operator">🔥 Iron Operator</option>
+          <option value="packer">📦 Packer</option>
+        </select>
+        <span className="select-icon">▼</span>
+      </div>
 
+      {/* Salary */}
       <input
         placeholder="Salary"
         value={salary}
         onChange={(e) => setSalary(e.target.value)}
       />
 
-      {/* ✅ SHIFT DROPDOWN */}
+      {/* SHIFT DROPDOWN */}
       <div className="select-wrapper">
         <select
           value={shift}
