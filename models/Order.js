@@ -1,14 +1,22 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-  customerName: String,
+  customerName: {
+    type: String,
+    required: true
+  },
+
   product: {
     type: String,
-    enum: ["shirt", "frocks", "trouser","bloues","shorts","denim shirts"],
-    default: "shirt",
-
+    enum: ["shirt", "frocks", "trouser", "blouse", "shorts", "denim_shirt"],
+    required: true
   },
-  quantity: Number,
+
+  quantity: {
+    type: Number,
+    required: true
+  },
+
   status: {
     type: String,
     default: "pending"
@@ -16,5 +24,3 @@ const orderSchema = new mongoose.Schema({
 });
 
 export default mongoose.model("Order", orderSchema);
-
- 
