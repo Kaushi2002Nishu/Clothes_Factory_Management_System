@@ -14,11 +14,14 @@ const ProductionSchema = new mongoose.Schema({
   },
 
   stage: {
-    type: String,
-    enum: ["cutting", "stitching", "packing"],
-    default: "cutting"
-  },
-
+  type: String,
+  enum: [
+    "designing","fabric_cutting",
+    "cutting","stitching","quality_check",
+    "ironing","labeling","packing","shipping","completed"
+  ],
+  default: "designing"
+},
   date: {
     type: Date,
     default: Date.now

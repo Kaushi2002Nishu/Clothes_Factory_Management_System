@@ -3,51 +3,96 @@ import axios from "axios";
 
 function Workers() {
   const [workers, setWorkers] = useState([]);
+
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [salary, setSalary] = useState("");
-  const [shift, setShift] = useState("");
+  const [shift, setShift] = useState("morning");
 
+  // Load workers
   const loadWorkers = async () => {
-    const res = await axios.get("http://localhost:5000/api/workers");
-    setWorkers(res.data);
+    try {
+      const res = await axios.get("http://localhost:5000/api/workers");
+      setWorkers(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
     loadWorkers();
   }, []);
 
+  // Add worker
   const addWorker = async () => {
-    await axios.post("http://localhost:5000/api/workers", {
-      name,
-      position,
-      salary,
-      shift
-    });
+    try {
+      await axios.post("http://localhost:5000/api/workers", {
+        name,
+        position,
+        salary,
+        shift
+      });
 
-    setName("");
-    setPosition("");
-    setSalary("");
-    setShift("");
-    loadWorkers();
+      setName("");
+      setPosition("");
+      setSalary("");
+      setShift("morning");
+
+      loadWorkers();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  // Delete worker
   const deleteWorker = async (id) => {
-    await axios.delete(`http://localhost:5000/api/workers/${id}`);
-    loadWorkers();
+    try {
+      await axios.delete(`http://localhost:5000/api/workers/${id}`);
+      loadWorkers();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div>
       <h2>Workers</h2>
 
-      <input placeholder="Name" value={name} onChange={(e)=>setName(e.target.value)} />
-      <input placeholder="Position" value={position} onChange={(e)=>setPosition(e.target.value)} />
-      <input placeholder="Salary" value={salary} onChange={(e)=>setSalary(e.target.value)} />
-      <input placeholder="Shift" value={shift} onChange={(e)=>setShift(e.target.value)} />
+      <input
+        placeholder="Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+
+      <input
+        placeholder="Position"
+        value={position}
+        onChange={(e) => setPosition(e.target.value)}
+      />
+
+      <input
+        placeholder="Salary"
+        value={salary}
+        onChange={(e) => setSalary(e.target.value)}
+      />
+
+      {/* ✅ SHIFT DROPDOWN */}
+      <div className="select-wrapper">
+        <select
+          value={shift}
+          onChange={(e) => setShift(e.target.value)}
+          className="custom-select"
+        >
+          <option value="morning">🌅 Morning</option>
+          <option value="evening">🌇 Evening</option>
+          <option value="night">🌙 Night</option>
+        </select>
+        <span className="select-icon">▼</span>
+      </div>
 
       <button onClick={addWorker}>Add Worker</button>
 
+      {/* LIST */}
       {workers.map((worker) => (
         <div className="card" key={worker._id}>
           <p><b>Name:</b> {worker.name}</p>
@@ -55,7 +100,10 @@ function Workers() {
           <p><b>Salary:</b> {worker.salary}</p>
           <p><b>Shift:</b> {worker.shift}</p>
 
-          <button className="delete" onClick={() => deleteWorker(worker._id)}>
+          <button
+            className="delete"
+            onClick={() => deleteWorker(worker._id)}
+          >
             Delete
           </button>
         </div>
