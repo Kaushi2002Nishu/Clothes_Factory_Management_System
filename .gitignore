@@ -1,0 +1,28 @@
+# --- IntelliJ IDEA ---
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# --- Java & Maven (Selenium testing) ---
+target/
+*.class
+dependency-reduced-pom.xml
+
+# --- Node.js & React (Frontend) ---
+node_modules/
+build/
+dist/
+.env
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- OS Generated Files ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
