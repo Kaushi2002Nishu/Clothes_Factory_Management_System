@@ -1,0 +1,390 @@
+{
+	"id": "e66f07fe-bdc8-46e5-ad57-5b41fcad9284",
+	"name": "Clothes Factory API testing",
+	"timestamp": "2026-11-01T08:39:03.043Z",
+	"collection_id": "6ac877b3-f70b-4592-ab1a-368d2bc14432",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 9,
+	"totalFail": 5,
+	"results": [
+		{
+			"id": "0f2d3d14-53f0-427a-947b-51910b09fc04",
+			"name": "Create order",
+			"url": "http://localhost:5000/api/orders",
+			"time": 9,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "46bfedd2-5018-46b5-9ab5-181e4286959b",
+			"name": "Create Order",
+			"url": "http://localhost:5000/api/orders",
+			"time": 7,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Order created successfully": true
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Order created successfully": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Order created successfully": true
+				}
+			]
+		},
+		{
+			"id": "b50a9a0f-7d39-4976-b8c0-04c6c20cd423",
+			"name": "Get All Orders",
+			"url": "http://localhost:5000/api/orders",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is an array": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is an array": true
+				}
+			]
+		},
+		{
+			"id": "0ecb5811-d850-4730-b82c-20117d4a6363",
+			"name": "Update order",
+			"url": "http://localhost:5000/api/orders/6ae62fbaec6a1f0f1852d6f0",
+			"time": 8,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 200": false,
+				"Order updated successfully": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Order updated successfully": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code is 200": false,
+					"Order updated successfully": false
+				}
+			]
+		},
+		{
+			"id": "dc22eccf-678a-4727-9a76-9475e4f55fee",
+			"name": "Get All Orders",
+			"url": "http://localhost:5000/api/orders",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is an array": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is an array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is an array": true
+				}
+			]
+		},
+		{
+			"id": "5e7342fa-5f61-41b0-9371-2cfc5574eea3",
+			"name": "Delete Order",
+			"url": "http://localhost:5000/api/orders/6ae62fbaec6a1f0f1852d6f0",
+			"time": 6,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 200": false,
+				"Order deleted successfully": false
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 0,
+					"fail": 1
+				},
+				"Order deleted successfully": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status code is 200": false,
+					"Order deleted successfully": false
+				}
+			]
+		},
+		{
+			"id": "01a2c9a7-0082-4809-a061-e62b010fb9ec",
+			"name": "Invalid order Id",
+			"url": "http://localhost:5000/api/orders/7ae62a3fec6a1f0f1952d7ef",
+			"time": 4,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Invalid ID should not return success": true
+			},
+			"testPassFailCounts": {
+				"Invalid ID should not return success": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Invalid ID should not return success": true
+				}
+			]
+		},
+		{
+			"id": "d2f45483-2e94-4623-aea4-6a4878bf26ee",
+			"name": "invalid",
+			"url": "http://localhost:5000/api/orders",
+			"time": 5,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status code is 201": true,
+				"Order created successfully": false
+			},
+			"testPassFailCounts": {
+				"Status code is 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Order created successfully": {
+					"pass": 0,
+					"fail": 1
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status code is 201": true,
+					"Order created successfully": false
+				}
+			]
+		},
+		{
+			"id": "151c92a7-7ef8-4490-9078-d0f12362a4f9",
+			"name": "New Request",
+			"url": "http://localhost:5000/api/orders/6ae6e74f8000b7498ccbe5f8",
+			"time": 5,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				5
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e3af7bc0-5a41-4278-880b-d0d013cdfe3b",
+			"name": "New Request",
+			"url": "http://localhost:5000/api/orders/6ae6e74f8000b7498ccbe5f8",
+			"time": 7,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				7
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e51f5f26-97d3-4473-aa38-0d8ba64c842d",
+			"name": "bugs",
+			"url": "http://localhost:5000/api/orders",
+			"time": 9,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "8bcc698b-ea3a-492f-b8b9-9efbfcca71cb",
+			"name": "bug",
+			"url": "http://localhost:5000/api/orders",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 79,
+	"collection": {
+		"requests": [
+			{
+				"id": "0f2d3d14-53f0-427a-947b-51910b09fc04",
+				"method": "POST"
+			},
+			{
+				"id": "46bfedd2-5018-46b5-9ab5-181e4286959b",
+				"method": "POST"
+			},
+			{
+				"id": "b50a9a0f-7d39-4976-b8c0-04c6c20cd423",
+				"method": "GET"
+			},
+			{
+				"id": "0ecb5811-d850-4730-b82c-20117d4a6363",
+				"method": "PUT"
+			},
+			{
+				"id": "dc22eccf-678a-4727-9a76-9475e4f55fee",
+				"method": "GET"
+			},
+			{
+				"id": "5e7342fa-5f61-41b0-9371-2cfc5574eea3",
+				"method": "DELETE"
+			},
+			{
+				"id": "01a2c9a7-0082-4809-a061-e62b010fb9ec",
+				"method": "PUT"
+			},
+			{
+				"id": "d2f45483-2e94-4623-aea4-6a4878bf26ee",
+				"method": "POST"
+			},
+			{
+				"id": "151c92a7-7ef8-4490-9078-d0f12362a4f9",
+				"method": "PUT"
+			},
+			{
+				"id": "e3af7bc0-5a41-4278-880b-d0d013cdfe3b",
+				"method": "DELETE"
+			},
+			{
+				"id": "e51f5f26-97d3-4473-aa38-0d8ba64c842d",
+				"method": "POST"
+			},
+			{
+				"id": "8bcc698b-ea3a-492f-b8b9-9efbfcca71cb",
+				"method": "GET"
+			}
+		]
+	}
+}
