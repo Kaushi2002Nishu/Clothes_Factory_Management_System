@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "fb423141-2f71-43da-adcb-398a973d2479",
+		"name": "Clothes_Factory_Management_System_API_Automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Orders API",
+			"item": [
+				{
+					"name": "Testcase01-create rder post",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Customer name is correct\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.customerName).to.eql(\"Suresh\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Product is frocks\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.product).to.eql(\"frocks\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Quantity is correct\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.quantity).to.eql(25);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Order status is pending\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    pm.expect(responseData.status).to.eql(\"pending\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Order ID is generated\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData._id).to.exist;\r",
+									"\r",
+									"    pm.collectionVariables.set(\"orderId\", responseData._id);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerName\": \"Suresh\",\r\n  \"product\": \"frocks\",\r\n  \"quantity\": 25,\r\n  \"status\": \"pending\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Case 02-Get All Orders",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response should be an array\", function () {\r",
+									"    pm.expect(pm.response.json()).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Created order should exist\", function () {\r",
+									"    const orders = pm.response.json();\r",
+									"\r",
+									"    const order = orders.find(\r",
+									"        item => item._id ===\r",
+									"        pm.collectionVariables.get(\"orderId\")\r",
+									"    );\r",
+									"\r",
+									"    pm.expect(order).to.exist;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time below 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Case 03-Update Order",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Customer name updated\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.customerName)\r",
+									"        .to.eql(\"Suresh Updated\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Product is frocks\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.product)\r",
+									"        .to.eql(\"frocks\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Quantity updated to 100\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.quantity).to.eql(100);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status updated to processing\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.status)\r",
+									"        .to.eql(\"processing\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerName\": \"Suresh Updated\",\r\n  \"product\": \"frocks\",\r\n  \"quantity\": 100,\r\n  \"status\": \"processing\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/{{orderId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Order",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Test 1: Status Code\r",
+									"pm.test(\"Status code should be 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test 2: Delete Success Message\r",
+									"pm.test(\"Order deleted successfully\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData.message)\r",
+									"        .to.eql(\"Order deleted successfully\");\r",
+									"});\r",
+									"\r",
+									"// Test 3: Response should be JSON\r",
+									"pm.test(\"Response should be JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followOriginalHttpMethod": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/orders/{{orderId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Deleted order should not exist\", function () {\r",
+									"    const orders = pm.response.json();\r",
+									"\r",
+									"    const deletedOrder = orders.find(\r",
+									"        item => item._id ===\r",
+									"        pm.collectionVariables.get(\"orderId\")\r",
+									"    );\r",
+									"\r",
+									"    pm.expect(deletedOrder).to.be.undefined;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/orders",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"orders"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:5000"
+		},
+		{
+			"key": "orderId",
+			"value": ""
+		}
+	]
+}
